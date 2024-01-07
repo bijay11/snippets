@@ -7,6 +7,7 @@ import { db } from '@/app/db';
 export async function editSnippet(id: number, code: string) {
   await db.snippet.update({ where: { id }, data: { code } });
 
+  revalidatePath(`/snippets/${id}`);
   redirect(`/snippets/${id}`);
 }
 
